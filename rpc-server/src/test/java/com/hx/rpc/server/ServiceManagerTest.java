@@ -4,8 +4,10 @@ import com.hx.rpc.server.annotation.RPCServiceImpl;
 import com.hx.rpc.server.codec.Request;
 import com.hx.rpc.server.codec.ServiceDescriptor;
 import com.hx.rpc.server.codec.common.utils.ReflectionUtils;
+import com.hx.rpc.server.handler.ServiceInstance;
+import com.hx.rpc.server.handler.ServiceManager;
+import com.hx.rpc.server.handler.ServiceScanUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 import org.reflections.Reflections;
 

@@ -9,4 +9,5 @@ import lombok.Data;
 public class Request {
     private ServiceDescriptor service;//请求的服务
     private Object[] parameters;//请求入参
+    private String RequestId;
 }

@@ -10,4 +10,5 @@ public class Response {
     private int code = 0;//服务返回的编码 0=成功 非0=失败
     private String message = "ok";//具体的错误信息
     private Object data;//返回的数据
+    private String RequestId;
 }

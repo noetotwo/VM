@@ -41,6 +41,7 @@ public class HTTPTransportServer implements TransportService{
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             e.printStackTrace();
+            System.exit( 1 ) ;
         }
 
 
@@ -53,6 +54,7 @@ public class HTTPTransportServer implements TransportService{
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             e.printStackTrace();
+            System.exit( 1 ) ;
         }
 
     }

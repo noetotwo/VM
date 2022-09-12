@@ -28,7 +28,7 @@ public class ZookeeperService {
     }
 
     /**
-     * 创建持久Zookeeper节点
+     * 创建临时Zookeeper节点
      *
      * @param nodePath  节点路径（如果父节点不存在则会自动创建父节点）
      * @param nodeValue 节点数据
@@ -38,13 +38,13 @@ public class ZookeeperService {
         try {
             return zooKeeper.create(nodePath,nodeValue.getBytes(StandardCharsets.UTF_8), ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL);
         } catch (Exception e) {
-            log.error("创建持久Zookeeper节点失败,nodePath:{},nodeValue:{}", nodePath, nodeValue, e);
+            log.error("创建临时Zookeeper节点失败,nodePath:{},nodeValue:{}", nodePath, nodeValue, e);
         }
         return null;
     }
 
     /**
-     * 创建临时Zookeeper节点
+     * 创建持久Zookeeper节点
      *
      * @param nodePath  节点路径（如果父节点不存在则会自动创建父节点）
      * @param nodeValue 节点数据
@@ -54,7 +54,7 @@ public class ZookeeperService {
         try {
             return zooKeeper.create(nodePath,nodeValue.getBytes(StandardCharsets.UTF_8), ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);
         } catch (Exception e) {
-            log.error("创建临时Zookeeper节点失败,nodePath:{},nodeValue:{}", nodePath, nodeValue, e);
+            log.error("创建持久Zookeeper节点失败,nodePath:{},nodeValue:{}", nodePath, nodeValue, e);
         }
         return null;
     }
