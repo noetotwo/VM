@@ -40,6 +40,7 @@ public class RpcServer {
         this.config = config;
     }
 
+
     /**
      * 配置Netty的运行，支持TCP通讯
      */
@@ -89,6 +90,11 @@ public class RpcServer {
             log.info("自动注册异常");
             e.printStackTrace();
         }
+    }
+
+    public void AllStart(){
+        HTTPStart();
+        NettyStart();
     }
 
     /**

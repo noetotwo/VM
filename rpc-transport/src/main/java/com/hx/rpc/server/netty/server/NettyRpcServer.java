@@ -15,6 +15,8 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.handler.timeout.ReadTimeoutHandler;
+import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,7 +66,12 @@ public class NettyRpcServer {
                         protected void initChannel(SocketChannel ch) {
                             // 30 秒之内没有收到客户端请求的话就关闭连接
                             ChannelPipeline p = ch.pipeline();
-                            p.addLast(new IdleStateHandler(0, 0, 10, TimeUnit.SECONDS));
+                            p.addLast(new IdleStateHandler(0, 0, 3, TimeUnit.SECONDS));
+                            //实现100秒钟，如果两端，如果数据读取，直接断开连接
+                            p.addLast(new ReadTimeoutHandler(100));
+
+                            //实现100秒钟，如果两端，如果数据写入，直接断开连接
+                            p.addLast(new WriteTimeoutHandler(100));
                             p.addLast(new DelimiterBasedFrameDecoder(2 * 1024, Unpooled.wrappedBuffer(delimiter.getBytes())));
                             p.addLast(new StringEncoder());
                             p.addLast(new StringDecoder());
